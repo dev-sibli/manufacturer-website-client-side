@@ -1,49 +1,71 @@
 import React from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
-const Login = () => {
+const SignUp = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useSignInWithEmailAndPassword(auth);
-    const { register, formState: { errors }, handleSubmit } = useForm();
-    let loginError;
+    ] = useCreateUserWithEmailAndPassword(auth);
+
+    let signUpError;
 
     if (loading || gLoading) {
         return <Loading></Loading>
     }
+
     if (user || gUser) {
         console.log(user);
     }
 
     if (error || gError) {
-        loginError = <p className='text-red-600'><small>{error?.message || gError?.message}</small></p>
+        signUpError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
     }
 
-    const onSubmit = (data) => {
-        signInWithEmailAndPassword(data.email, data.password);
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
     }
-
     return (
         <div className='flex h-screen justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="text-2xl text-center font-bold">Login</h2>
+                    <h2 className="text-center text-2xl font-bold">Sign Up</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
+
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Your Name"
+                                className="input input-bordered w-full max-w-xs"
+                                {...register("name", {
+                                    required: {
+                                        value: true,
+                                        message: 'Name is Required'
+                                    }
+                                })}
+                            />
+                            <label className="label">
+                                {errors.name?.type === 'required' && <span className="label-text-alt text-red-600">{errors.name.message}</span>}
+                            </label>
+                        </div>
+
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
                             <input
                                 type="email"
-                                placeholder="Enter Your Email"
+                                placeholder="Your Email"
                                 className="input input-bordered w-full max-w-xs"
                                 {...register("email", {
                                     required: {
@@ -52,7 +74,7 @@ const Login = () => {
                                     },
                                     pattern: {
                                         value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                                        message: 'Provide valid Email'
+                                        message: 'Provide a valid Email'
                                     }
                                 })}
                             />
@@ -67,7 +89,7 @@ const Login = () => {
                             </label>
                             <input
                                 type="password"
-                                placeholder="Enter Your Password"
+                                placeholder="Password"
                                 className="input input-bordered w-full max-w-xs"
                                 {...register("password", {
                                     required: {
@@ -76,7 +98,7 @@ const Login = () => {
                                     },
                                     minLength: {
                                         value: 6,
-                                        message: 'Password should be 6 characters or longer'
+                                        message: 'Must be 6 characters or longer'
                                     }
                                 })}
                             />
@@ -85,19 +107,19 @@ const Login = () => {
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-600">{errors.password.message}</span>}
                             </label>
                         </div>
-                        {loginError}
-                        <input className='btn w-full max-w-xs text-white ' type="submit" value="Login" />
+
+                        {signUpError}
+                        <input className='btn w-full max-w-xs text-white' type="submit" value="Sign Up" />
                     </form>
-                    <p className='mt-2'><small>New to Jantrik? <Link className='text-primary' to="/signup">Create New Account</Link></small></p>
+                    <p><small>Already have an account? <Link className='text-primary' to="/login">Please login</Link></small></p>
                     <div className="divider">OR</div>
                     <button onClick={() => signInWithGoogle()}
                         className="btn btn-outline w-full"
                     >SignIn with Google</button>
                 </div>
             </div>
-
-        </div>
+        </div >
     );
 };
 
-export default Login;
+export default SignUp;
