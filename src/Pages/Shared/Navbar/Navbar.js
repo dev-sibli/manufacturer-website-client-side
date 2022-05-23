@@ -13,7 +13,10 @@ const Navbar = () => {
         <>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/blogs">Blogs</Link></li>
-            <li>{user ? <p>{user?.displayName}</p> && <button onClick={logout} className="btn btn-ghost" >Sign Out</button> : <Link to="/login">Login</Link>}</li>
+            {
+                user && <li><Link to="/dashboard">Dashboard</Link></li>
+            }
+            <li>{user ? <button onClick={logout} className="btn btn-ghost" > {user?.displayName} Sign Out</button> : <Link to="/login">Login</Link>}</li>
         </>
     return (
         <div className="navbar bg-base-100">
@@ -26,7 +29,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Jantrik</a>
+                <Link className='btn btn-ghost normal-case text-xl ' to="/">Jantrik Tools</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
