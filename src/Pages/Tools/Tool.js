@@ -13,7 +13,7 @@ const Tool = ({ tool }) => {
                 <p><small>Minimum Quantity: {minimumQuantity} Unit</small></p>
                 <p><small>Stock: {stockQuantity} Unit</small></p>
                 <div className="card-actions">
-                    <button className='btn btn-primary btn-wide w-full'>Order Now</button>
+                    <button className='btn btn-primary w-full'>Order Now</button>
                 </div>
             </div>
         </div>
