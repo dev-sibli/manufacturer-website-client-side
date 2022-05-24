@@ -23,15 +23,15 @@ const Login = () => {
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
-    if (loading || gLoading) {
-        return <Loading></Loading>
-    }
-
     useEffect(() => {
         if (token) {
             navigate(from, { replace: true });
         }
     }, [token, from, navigate])
+
+    if (loading || gLoading) {
+        return <Loading></Loading>
+    }
 
     if (error || gError) {
         loginError = <p className='text-red-600'><small>{error?.message || gError?.message}</small></p>
