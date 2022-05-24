@@ -9,14 +9,14 @@ module.exports = {
     themes: [
       {
         jantriktheme: {
-          primary: "#a991f7",
-          secondary: "#f6d860",
+          primary: "#5A52E8",
+          secondary: "#313234",
           accent: "#37cdbe",
           neutral: "#3d4451",
           "base-100": "#ffffff",
         },
       },
-      "dark",
+      "light",
       "cupcake",
     ],
   },

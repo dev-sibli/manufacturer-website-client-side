@@ -1,0 +1,56 @@
+[
+	{
+		"_id": "628c701bcf392ab737753523",
+		"name": "Swiss Army knife",
+		"image": "https://i.ibb.co/QXHgfvb/swis-blade.jpg",
+		"description": "If you're a hunter, fisher, bushcrafter, or spend any time outdoors, the Huntsman is for you. It's equipped with all the tools you need to set up camp, break down your latest tag-filler, or make who knows how many MacGyver-esque contraptions",
+		"price": 35,
+		"minimumQuantity": 10,
+		"stockQuantity": 100
+	},
+	{
+		"_id": "628c701bcf392ab737753524",
+		"name": "Maped Essential Soft 17cm Scissor",
+		"image": "https://i.ibb.co/513MPz8/cutting-machine.jpg",
+		"description": "Stainless steel blades and rivet, technical and timeless design, ambidextrous 2D ergonomic handles, soft material for better comfort, 2-year guarantee",
+		"price": 20,
+		"minimumQuantity": 5,
+		"stockQuantity": 50
+	},
+	{
+		"_id": "628c701bcf392ab737753525",
+		"name": "STANLEY Heavy Duty BI-Material Handsaw",
+		"image": "https://i.ibb.co/NjVRQBn/saw.jpg",
+		"description": "Ultrasonically Welded Handle: Ensuring secure and reliable cutting performance over time. Bi-Material: Ergonomic handle anti-slip and enhanced comfort",
+		"price": 30,
+		"minimumQuantity": 5,
+		"stockQuantity": 50
+	},
+	{
+		"_id": "628c701bcf392ab737753526",
+		"name": "Reversible Hammer Drill Machine",
+		"image": "https://i.ibb.co/0DQvR23/drill.jpg",
+		"description": "Ergonomic reversible hammer drill design with optimal grip positions, light weight and insulated shock proof plastic body, easy to change bits",
+		"price": 25,
+		"minimumQuantity": 5,
+		"stockQuantity": 50
+	},
+	{
+		"_id": "628c701bcf392ab737753527",
+		"name": "BMT126C Compact Hand Tool Kit",
+		"image": "https://i.ibb.co/tZcCH5G/tool-box.jpg",
+		"description": "Compact DIY Kit Box - This DIY kit box has been skilfully developed with a stylish and compact design. Additionally, it is incredibly light in weight. This hand tool kit provides a good assortment of tools for all household DIY tasks.",
+		"price": 40,
+		"minimumQuantity": 5,
+		"stockQuantity": 50
+	},
+	{
+		"_id": "628c701bcf392ab737753528",
+		"name": "Oblivion Heavy Duty Small Hammer",
+		"image": "https://i.ibb.co/z67YvBY/hammer.jpg",
+		"description": "Made from fine grained high carbon steel. The claw hammer is designed with humanized handle, which covered with TPR plastic material and shaped in finger holding grooves.",
+		"price": 10,
+		"minimumQuantity": 5,
+		"stockQuantity": 50
+	}
+]
