@@ -1,13 +1,35 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
-const AddReview = () => {
-
+const AddReview = ({ treat, setTreat }) => {
+    const { rating, about } = treat;
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const onSubmit = async data => {
-        console.log('data', data);
+        const reviews = {
+            rating: rating,
+            about: about
+        }
+
+        fetch('http://localhost:5000/review', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(reviews)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    toast(`Thank you for your Review`)
+                }
+                else {
+                    toast.error(`Something went wrong`)
+                }
+            });
     }
+
     return (
         <div className='flex mt-6 justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">

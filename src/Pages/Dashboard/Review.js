@@ -1,9 +1,11 @@
 import { data } from 'autoprefixer';
 import React, { useEffect, useState } from 'react';
+import AddReview from './AddReview';
 import ReviewCard from './ReviewCard';
 
 const Review = () => {
     const [reviews, setReviews] = useState([]);
+    const [treat, setTreat] = useState([]);
 
     useEffect(() => {
         fetch(`http://localhost:5000/review`)
