@@ -5,7 +5,7 @@ import ReviewCard from './ReviewCard';
 
 const Review = () => {
     const [reviews, setReviews] = useState([]);
-    const [treat, setTreat] = useState([]);
+    const [add, setAdd] = useState(null);
 
     useEffect(() => {
         fetch(`http://localhost:5000/review`)
@@ -21,10 +21,16 @@ const Review = () => {
                     reviews.map(review => <ReviewCard
                         key={review._id}
                         review={review}
+                        setAdd={setAdd}
                     ></ReviewCard>)
                 }
             </div>
+            {add && <AddReview
+                add={add}
+                setAdd={setAdd}
+            ></AddReview>
 
+            }
         </div>
     );
 };
