@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 
 const Purchase = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
     const [user] = useAuthState(auth);
+    const emailRef = useRef()
+    const nameRef = useRef()
+    const quantityRef = useRef()
+    const addressRef = useRef()
+    const phoneRef = useRef()
+
+
     const { productId } = useParams();
     const [product, setProduct] = useState({})
     useEffect(() => {
@@ -14,27 +20,43 @@ const Purchase = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data));
-    }, [])
+    }, [productId, product])
 
-    const onSubmit = data => {
-        console.log(data);
+    const handleSubmit = event => {
+        event.preventDefault()
+        const name = nameRef.current.value;
+        const email = emailRef.current.value;
+        const quantity = quantityRef.current.value;
+        const address = addressRef.current.value;
+        const phone = phoneRef.current.value;
+        console.log(name, email, quantity, address, phone);
+
     }
 
     return (
-        <div className='flex h-fit justify-center items-center my-16'>
-            <div className=" card w-96 bg-base-100 shadow-xl">
+        <div className='flex h-fit justify-center items-center my-16 gap-5'>
+            <div class="card w-7/12 bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <img className='w-6/12 ' src={product.image} alt="" />
+                    <h2 class="card-title">{product.name}</h2>
+                    <p>{product.description}</p>
+                    <p>Stock: {product.stockQuantity} Unit</p>
+                    <p>Minimum Quantity: {product.minimumQuantity} Unit</p>
+                </div>
+            </div>
+            <div className=" card w-5/12 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="text-center text-2xl font-bold">Sign Up</h2>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-
+                    <h2 className="text-center text-2xl font-bold">Purchase</h2>
+                    <form onSubmit={handleSubmit}>
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
                             <input
                                 type="text"
-                                placeholder={user?.displayName}
+                                value={user?.displayName}
                                 disabled
+                                ref={nameRef}
                                 className="input input-bordered w-full max-w-xs"
                             />
                         </div>
@@ -45,8 +67,22 @@ const Purchase = () => {
                             </label>
                             <input
                                 type="email"
-                                placeholder={user?.email}
+                                value={user?.email}
                                 disabled
+                                ref={emailRef}
+                                className="input input-bordered w-full max-w-xs"
+                            />
+                        </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Quantity</span>
+                            </label>
+                            <input
+                                type="number"
+                                placeholder='Enter Quantity'
+                                min={product.minimumQuantity}
+                                max={product.stockQuantity}
+                                ref={quantityRef}
                                 className="input input-bordered w-full max-w-xs"
                             />
                         </div>
@@ -57,7 +93,9 @@ const Purchase = () => {
                             <input
                                 type="text"
                                 placeholder="Address"
+                                ref={addressRef}
                                 className="input input-bordered w-full max-w-xs"
+                                name='address'
                             />
                         </div>
                         <div className="form-control w-full max-w-xs">
@@ -67,9 +105,11 @@ const Purchase = () => {
                             <input
                                 type="number"
                                 placeholder="Phone"
+                                ref={phoneRef}
                                 className="input input-bordered w-full max-w-xs"
                             />
                         </div>
+
                         <input className='mt-4 btn w-full max-w-xs text-white' type="submit" value="Purchase" />
                     </form>
                 </div>

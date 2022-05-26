@@ -2,12 +2,13 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-const AddReview = ({ add, setAdd }) => {
-    // const { rating, about } = add;
+const AddReview = (props) => {
+    console.log(props);
+    // const { rating, about } = review;
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
         // const review = {
         //     rating: rating,
         //     about: about
