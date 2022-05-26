@@ -18,26 +18,29 @@ import Users from './Pages/Dashboard/Users';
 import NotFound from './Pages/Shared/NotFound/NotFound';
 import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
 import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
+import RequireAdmin from './Pages/Login/RequireAdmin';
+import Payment from './Pages/Dashboard/Payment';
 
 function App() {
   return (
     <div className="max-w-7xl mx-auto px-12">
       <Navbar></Navbar>
       <Routes>
-        <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/portfolio' element={<MyPortfolio />}></Route>
         <Route path='/purchase/:productId' element={<RequireAuth><Purchase /></RequireAuth>}></Route>
-        <Route path='/dashboard' element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
-          <Route index element={<MyProfile></MyProfile>}></Route>
-          <Route path="addReview" element={<AddReview></AddReview>}></Route>
+        <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
+          <Route index element={<MyProfile />}></Route>
+          <Route path="addReview" element={<AddReview />}></Route>
           <Route path="myOrder" element={<MyOrder />}></Route>
+          <Route path="payment/:id" element={<Payment />}></Route>
           <Route path="users" element={<Users />}></Route>
-          <Route path="allOrders" element={<ManageAllOrders></ManageAllOrders>}></Route>
+          <Route path="allOrders" element={<ManageAllOrders />}></Route>
         </Route>
-        <Route path='/blogs' element={<Blogs></Blogs>}></Route>
-        <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/signup' element={<SignUp></SignUp>}></Route>
-        <Route path="*" element={<NotFound></NotFound>}></Route>
+        <Route path='/blogs' element={<Blogs />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
       <Footer />
       <ToastContainer />

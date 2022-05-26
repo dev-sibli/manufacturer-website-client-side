@@ -7,7 +7,6 @@ import Orders from './Orders'
 
 const MyOrder = () => {
     const [orders, setOrders] = useState([]);
-
     const [user] = useAuthState(auth);
     const navigate = useNavigate()
     const email = user?.email;
@@ -20,7 +19,6 @@ const MyOrder = () => {
                 }
             })
                 .then(res => {
-                    console.log('res', res);
                     if (res.status === 401 || res.status === 403) {
                         signOut(auth);
                         localStorage.removeItem('accessToken');
