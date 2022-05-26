@@ -15,6 +15,9 @@ import AddReview from './Pages/Dashboard/AddReview';
 import MyOrder from './Pages/Dashboard/MyOrder';
 import Purchase from './Pages/Purchase/Purchase';
 import Users from './Pages/Dashboard/Users';
+import NotFound from './Pages/Shared/NotFound/NotFound';
+import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
+import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
 
 function App() {
   return (
@@ -22,16 +25,19 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
+        <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path='/purchase/:productId' element={<RequireAuth><Purchase /></RequireAuth>}></Route>
         <Route path='/dashboard' element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path="addReview" element={<AddReview></AddReview>}></Route>
           <Route path="myOrder" element={<MyOrder />}></Route>
           <Route path="users" element={<Users />}></Route>
+          <Route path="allOrders" element={<ManageAllOrders></ManageAllOrders>}></Route>
         </Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer />
       <ToastContainer />

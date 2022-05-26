@@ -30,7 +30,7 @@ const SignUp = () => {
     }
 
     if (token) {
-        navigate(from, { replace: true });
+        console.log('hello');
     }
 
     if (error || gError || updateError) {

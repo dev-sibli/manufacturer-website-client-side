@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { toast } from 'react-toastify';
 
 const Purchase = () => {
     const [user] = useAuthState(auth);
@@ -11,7 +12,7 @@ const Purchase = () => {
     const quantityRef = useRef()
     const addressRef = useRef()
     const phoneRef = useRef()
-
+    const toolRef = useRef()
 
     const { productId } = useParams();
     const [product, setProduct] = useState({})
@@ -26,11 +27,30 @@ const Purchase = () => {
         event.preventDefault()
         const name = nameRef.current.value;
         const email = emailRef.current.value;
+        const tool = toolRef.current.value;
         const quantity = quantityRef.current.value;
         const address = addressRef.current.value;
         const phone = phoneRef.current.value;
-        console.log(name, email, quantity, address, phone);
-
+        console.log(name, email, tool, quantity, address, phone);
+        const order = {
+            name: name,
+            email: email,
+            toolName: tool,
+            quantity: quantity,
+            address: address,
+            phone: phone
+        }
+        fetch('http://localhost:5000/order', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            });
     }
 
     return (
@@ -70,6 +90,17 @@ const Purchase = () => {
                                 value={user?.email}
                                 disabled
                                 ref={emailRef}
+                                className="input input-bordered w-full max-w-xs"
+                            />
+                        </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Tools Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                value={product.name}
+                                ref={toolRef}
                                 className="input input-bordered w-full max-w-xs"
                             />
                         </div>
