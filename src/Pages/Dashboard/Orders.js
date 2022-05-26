@@ -1,19 +1,19 @@
 import React from 'react';
 
 const Orders = ({ order, index }) => {
-    const { name, email, toolName, quantity, address, phone } = order;
+    const { price, toolName, quantity } = order;
     return (
         <>
             <tr>
                 <th>{index + 1}</th>
-                {/* <td><strong>{name}</strong></td> */}
-                {/* <td>{email}</td> */}
                 <td>{toolName}</td>
+                <td>{price}</td>
                 <td>{quantity}</td>
-                {/* <td>{address}</td> */}
-                <td>{phone}</td>
                 <td>
-                    <label for="delete-confirm-modal" class="btn btn-xs btn-error" >Delete</label>
+                    <label for="delete-confirm-modal" className="btn btn-xs btn-success" >Pay Now</label>
+                </td>
+                <td>
+                    <label for="delete-confirm-modal" className="btn btn-xs btn-error" >Delete</label>
                 </td>
             </tr>
         </>

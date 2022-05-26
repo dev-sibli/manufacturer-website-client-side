@@ -12,7 +12,7 @@ const AllOrders = ({ allOrder, index }) => {
                 <td>{quantity}</td>
                 <td>{phone}</td>
                 <td>
-                    <label for="delete-confirm-modal" class="btn btn-xs btn-error">Delete</label>
+                    <label for="delete-confirm-modal" className="btn btn-xs btn-error">Delete</label>
                 </td>
             </tr>
         </>

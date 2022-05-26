@@ -2,8 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-const AddReview = (props) => {
-    console.log(props);
+const AddReview = () => {
+
     // const { rating, about } = review;
     const { register, formState: { errors }, handleSubmit } = useForm();
 

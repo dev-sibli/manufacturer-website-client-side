@@ -10,6 +10,7 @@ const Purchase = () => {
     const emailRef = useRef()
     const nameRef = useRef()
     const quantityRef = useRef()
+    const priceRef = useRef()
     const addressRef = useRef()
     const phoneRef = useRef()
     const toolRef = useRef()
@@ -31,12 +32,14 @@ const Purchase = () => {
         const quantity = quantityRef.current.value;
         const address = addressRef.current.value;
         const phone = phoneRef.current.value;
+        const price = priceRef.current.value;
         console.log(name, email, tool, quantity, address, phone);
         const order = {
             name: name,
             email: email,
             toolName: tool,
             quantity: quantity,
+            price: price,
             address: address,
             phone: phone
         }
@@ -49,16 +52,22 @@ const Purchase = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                const acknowledged = true;
+                if (acknowledged) {
+                    toast.success(`Purchase done`)
+                }
+                else {
+                    toast.error(`Purchase error`)
+                }
             });
     }
 
     return (
         <div className='flex h-fit justify-center items-center my-16 gap-5'>
-            <div class="card w-7/12 bg-base-100 shadow-xl">
-                <div class="card-body">
+            <div className="card w-7/12 bg-base-100 shadow-xl">
+                <div className="card-body">
                     <img className='w-6/12 ' src={product.image} alt="" />
-                    <h2 class="card-title">{product.name}</h2>
+                    <h2 className="card-title">{product.name}</h2>
                     <p>{product.description}</p>
                     <p>Stock: {product.stockQuantity} Unit</p>
                     <p>Minimum Quantity: {product.minimumQuantity} Unit</p>
@@ -106,6 +115,17 @@ const Purchase = () => {
                         </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
+                                <span className="label-text">Price</span>
+                            </label>
+                            <input
+                                type="text"
+                                value={product.price}
+                                ref={priceRef}
+                                className="input input-bordered w-full max-w-xs"
+                            />
+                        </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
                                 <span className="label-text">Quantity</span>
                             </label>
                             <input
@@ -114,6 +134,7 @@ const Purchase = () => {
                                 min={product.minimumQuantity}
                                 max={product.stockQuantity}
                                 ref={quantityRef}
+                                required
                                 className="input input-bordered w-full max-w-xs"
                             />
                         </div>

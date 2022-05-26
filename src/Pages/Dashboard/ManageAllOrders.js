@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import AllOrders from './AllOrders';
@@ -12,21 +12,19 @@ const ManageAllOrders = () => {
             'content-type': 'application/json',
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
-    }).then(res => res.json()));
+    }).then(res => res.json())
+        .then(data => setAllOrders(data))
+    )
+        ;
     if (isLoading) {
         return <Loading></Loading>
     }
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/order`)
-    //         .then(res => res.json())
-    //         .then(data => setAllOrders(data))
-    // }, [])
     return (
         <div className='my-10'>
             <h4 className='text-2xl font-bold text-center my-12'>All orders</h4>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th>Number</th>

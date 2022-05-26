@@ -1,8 +1,9 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-import Order from './Orders'
+import Orders from './Orders'
 
 const MyOrder = () => {
     const [orders, setOrders] = useState([]);
@@ -12,30 +13,54 @@ const MyOrder = () => {
     const email = user?.email;
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/order/${user.email}`, {
+            fetch(`http://localhost:5000/myOrder?email=${email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 }
             })
-                .then(res => res.json())
-                .then(data => setOrders(data));
+                .then(res => {
+                    console.log('res', res);
+                    if (res.status === 401 || res.status === 403) {
+                        signOut(auth);
+                        localStorage.removeItem('accessToken');
+                        navigate('/');
+                    }
+                    return res.json()
+                })
+                .then(data => {
+                    setOrders(data);
+                });
         }
-        else {
-            return navigate('/');
-        }
-    }, [user])
+    }, [user, email, navigate])
     return (
         <div>
             <h1>My order</h1>
-            {
-                orders.map((order, index) => {
-                    <Order key={order._id}
-                        order={order}
-                        index={index}
-                    ></Order>
-                })
-            }
+            <div className="overflow-x-auto">
+                <table className="table w-full">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Tool Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Payment</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            orders.map((order, index) =>
+                                <Orders key={order._id}
+                                    order={order}
+                                    index={index}
+                                ></Orders>
+                            )
+                        }
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     );
 };
