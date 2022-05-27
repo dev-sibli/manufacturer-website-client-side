@@ -20,14 +20,13 @@ const Payment = () => {
     })
         .then(res => res.json()))
 
-
     if (isLoading) {
         return <Loading />
     }
 
     return (
         <div>
-            <div className="card w-50 max-w-md bg-base-100 shadow-xl my-12">
+            <div className="card mx-auto w-50 max-w-md bg-base-100 shadow-xl my-12">
                 <div className="card-body">
                     <p className="text-success font-bold">Hello, {order.name}</p>
                     <h2 className="card-title">Please Pay for {order.toolName}</h2>
@@ -35,7 +34,7 @@ const Payment = () => {
                     <p>Please pay: ${order.price}</p>
                 </div>
             </div>
-            <div className="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
+            <div className="card mx-auto flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
                 <div className="card-body">
                     <Elements stripe={stripePromise}>
                         <CheckoutForm order={order} />

@@ -1,7 +1,7 @@
 import React from 'react';
 
-const AllOrders = ({ allOrder, index }) => {
-    const { name, email, toolName, quantity, address, phone } = allOrder;
+const AllOrders = ({ manageOrder, index }) => {
+    const { name, email, toolName, quantity, phone } = manageOrder;
     return (
         <>
             <tr>

@@ -4,33 +4,31 @@ import { toast } from 'react-toastify';
 
 const AddReview = () => {
 
-    // const { rating, about } = review;
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const onSubmit = data => {
-        // console.log(data);
-        // const review = {
-        //     rating: rating,
-        //     about: about
-        // }
+        const review = {
+            rating: data.rating,
+            about: data.about
+        }
 
-        // fetch('http://localhost:5000/review', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(review)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.success) {
-        //             toast(`Thank you for your Review`)
-        //         }
-        //         else {
-        //             toast.error(`Something went wrong`)
-        //         }
-        //         setAdd(null)
-        //     });
+        fetch('http://localhost:5000/review', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(inserted => {
+                if (inserted.insertedId) {
+                    toast.success('Thank you for your Review')
+
+                }
+                else {
+                    toast.error('Something went wrong');
+                }
+            })
     }
 
     return (
