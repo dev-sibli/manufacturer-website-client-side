@@ -2,9 +2,9 @@ import React from 'react';
 import { toast } from 'react-toastify';
 
 const DeleteConfirmModal = ({ deletingOrder, setDeletingOrder, refetch }) => {
-    const { toolName, email } = deletingOrder;
+    const { toolName, _id } = deletingOrder;
     const handleDelete = () => {
-        fetch(`http://localhost:5000/order/${email}`, {
+        fetch(`http://localhost:5000/order/${_id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

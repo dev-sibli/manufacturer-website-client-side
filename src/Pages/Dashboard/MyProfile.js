@@ -36,7 +36,7 @@ const MyProfile = () => {
                         education: data.education
                     }
                     fetch(`http://localhost:5000/myProfile?email=${email}`, {
-                        method: 'PUT',
+                        method: 'POST',
                         headers: {
                             'content-type': 'application/json',
                             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -44,7 +44,8 @@ const MyProfile = () => {
                         body: JSON.stringify(user)
                     })
                         .then(res => res.json())
-
+                        .then(data => console.log(data))
+                    reset()
                 }
             })
     }
