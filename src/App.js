@@ -20,6 +20,7 @@ import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
 import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
 import RequireAdmin from './Pages/Login/RequireAdmin';
 import Payment from './Pages/Dashboard/Payment';
+import AddProduct from './Pages/Dashboard/AddProduct';
 
 function App() {
   return (
@@ -33,9 +34,10 @@ function App() {
           <Route index element={<MyProfile />}></Route>
           <Route path="addReview" element={<AddReview />}></Route>
           <Route path="myOrder" element={<MyOrder />}></Route>
-          <Route path="payment/:id" element={<Payment />}></Route>
-          <Route path="users" element={<Users />}></Route>
-          <Route path="allOrders" element={<ManageAllOrders />}></Route>
+          <Route path="payment/:id" element={<RequireAdmin><Payment /></RequireAdmin>}></Route>
+          <Route path="users" element={<RequireAdmin><Users /></RequireAdmin>}></Route>
+          <Route path="addProduct" element={<RequireAdmin><AddProduct /></RequireAdmin>}></Route>
+          <Route path="allOrders" element={<RequireAdmin><ManageAllOrders /></RequireAdmin>}></Route>
         </Route>
         <Route path='/blogs' element={<Blogs />}></Route>
         <Route path='/login' element={<Login />}></Route>

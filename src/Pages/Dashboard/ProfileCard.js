@@ -5,7 +5,7 @@ const ProfileCard = ({ profile }) => {
     return (
         <div className="card lg:max-w-lg bg-base-100 shadow-xl">
             <div className="card-body">
-                <h2 className="text-xl font-bold text-center text-secondary">{email} Star</h2>
+                <h2 className="text-xl font-bold text-center text-secondary">Star</h2>
                 {/* <p className='text-center'>{about}</p> */}
 
             </div>

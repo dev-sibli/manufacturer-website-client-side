@@ -6,7 +6,7 @@ import useAdmin from '../../hooks/useAdmin';
 
 const Dashboard = () => {
     const [user] = useAuthState(auth);
-    const [admin] = useAdmin(user.admin)
+    const [admin] = useAdmin(user)
     return (
         <div>
             <div className="drawer drawer-mobile">
@@ -27,8 +27,9 @@ const Dashboard = () => {
 
 
                         {admin && <>
-                            <li><Link to="/dashboard/users">All Users</Link></li>
-                            <li><Link to="/dashboard/allOrders">All Orders</Link></li>
+                            <li><Link to="/dashboard/addProduct">Add Product</Link></li>
+                            <li><Link to="/dashboard/users">Manage Users</Link></li>
+                            <li><Link to="/dashboard/allOrders">Manage Orders</Link></li>
                         </>}
                     </ul>
 
