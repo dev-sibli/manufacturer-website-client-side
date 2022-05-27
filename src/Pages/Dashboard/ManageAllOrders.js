@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import AllOrders from './AllOrders';
+import DeleteConfirmModal from './DeleteConfirmModal';
 
 const ManageAllOrders = () => {
-
+    const [deletingOrder, setDeletingOrder] = useState(null);
     const { data: ManageOrders, isLoading, refetch } = useQuery('ManageOrders', () => fetch('http://localhost:5000/order', {
         method: 'GET',
         headers: {
@@ -12,6 +13,7 @@ const ManageAllOrders = () => {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()));
+
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -38,12 +40,20 @@ const ManageAllOrders = () => {
                                 key={manageOrder._id}
                                 manageOrder={manageOrder}
                                 index={index}
-                                refetch={refetch}></AllOrders>)
+                                refetch={refetch}
+                                setDeletingOrder={setDeletingOrder}
+                            ></AllOrders>)
                         }
                     </tbody>
                 </table>
             </div>
-
+            {
+                deletingOrder && <DeleteConfirmModal
+                    deletingOrder={deletingOrder}
+                    refetch={refetch}
+                    setDeletingOrder={setDeletingOrder}
+                ></DeleteConfirmModal>
+            }
         </div>
     );
 }

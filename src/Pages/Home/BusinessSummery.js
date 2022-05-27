@@ -1,31 +1,30 @@
 import React from 'react';
+import { MdSupervisedUserCircle, MdOutlineArchitecture, MdAttachMoney } from "react-icons/md";
 
 const BusinessSummery = () => {
-
     return (
-        <div className='flex justify-center my-10'>
-            <div className="w-full text-center stats stats-vertical lg:stats-horizontal bg-base-200 text-base-content shadow">
+        <div class="w-full text-center stats stats-vertical lg:stats-horizontal shadow my-5">
 
-                <div className="stat">
-                    <div className="stat-title">Downloads</div>
-                    <div className="stat-value">31K</div>
-                    <div className="stat-desc">Jan 1st - Feb 1st</div>
-                </div>
-
-                <div className="stat">
-                    <div className="stat-title">All Users</div>
-                    <div className="stat-value"></div>
-
-                </div>
-
-                <div className="stat">
-                    <div className="stat-title">New Registers</div>
-                    <div className="stat-value">1,200</div>
-                    <div className="stat-desc">↘︎ 90 (14%)</div>
-                </div>
-
+            <div class="stat  flex justify-center align-item-center">
+                <div class="stat-title "><MdSupervisedUserCircle size={40} color={'blue'} /></div>
+                <div class="stat-value">150+</div>
+                <div class="stat-desc">Clients</div>
             </div>
+
+            <div class="stat  flex justify-center align-item-center">
+                <div class="stat-title"><MdOutlineArchitecture size={40} color={'blue'} /></div>
+                <div class="stat-value">60+</div>
+                <div class="stat-desc">Tools Available</div>
+            </div>
+
+            <div class="stat flex justify-center align-item-center">
+                <div class="stat-title"><MdAttachMoney size={40} color={'blue'} /></div>
+                <div class="stat-value">1M+</div>
+                <div class="stat-desc">Annual revenue</div>
+            </div>
+
         </div>
+
     );
 };
 

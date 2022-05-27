@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AllOrders = ({ manageOrder, index }) => {
+const AllOrders = ({ manageOrder, index, setDeletingOrder, refetch }) => {
     const { name, email, toolName, quantity, phone } = manageOrder;
     return (
         <>
@@ -12,7 +12,7 @@ const AllOrders = ({ manageOrder, index }) => {
                 <td>{quantity}</td>
                 <td>{phone}</td>
                 <td>
-                    <label htmlFor="delete-confirm-modal" className="btn btn-xs btn-error">Delete</label>
+                    <label onClick={() => setDeletingOrder(manageOrder)} for="delete-confirm-modal" class="btn btn-xs btn-error">Delete</label>
                 </td>
             </tr>
         </>
