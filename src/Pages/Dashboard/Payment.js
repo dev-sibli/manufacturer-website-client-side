@@ -20,6 +20,7 @@ const Payment = () => {
     })
         .then(res => res.json()))
 
+
     if (isLoading) {
         return <Loading />
     }

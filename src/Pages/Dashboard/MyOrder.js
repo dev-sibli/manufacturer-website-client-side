@@ -42,8 +42,8 @@ const MyOrder = () => {
                             <th>Tool Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
-                            <th>Payment</th>
                             <th>Action</th>
+                            <th>Transaction ID</th>
                         </tr>
                     </thead>
                     <tbody>

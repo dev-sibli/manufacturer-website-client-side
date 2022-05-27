@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Orders = ({ order, index }) => {
-    const { _id, price, toolName, quantity } = order;
+    const { _id, price, toolName, quantity, paid, transactionId } = order;
     return (
         <>
             <tr>
@@ -11,17 +11,14 @@ const Orders = ({ order, index }) => {
                 <td>{price}</td>
                 <td>{quantity}</td>
                 <td>
-                    <label htmlFor="delete-confirm-modal" className="btn btn-xs btn-success" >Pay Now</label>
+                    {!paid && <label htmlFor="delete-confirm-modal" className="btn btn-xs btn-success" >Cancel</label>}
                 </td>
-                <td>{(price) && <Link to={`/dashboard/payment/${_id}`}><button className='btn btn-xs btn-success'>pay</button></Link>}
-                    {/* {(price && paid) && <div>
-                        <p><span className='text-success'>Paid</span></p>
-                        <p>Transaction id: <span className='text-success'>Done</span></p>
-                    </div>} */}
+                <td>{(price && !paid) && <Link to={`/dashboard/payment/${_id}`}><button className='btn btn-xs btn-success'>pay</button></Link>}
+                    {(price && paid) && <div>
+                        <p><span className='text-success'>{paid}</span></p>
+                        <p><span className='text-success'>{transactionId}</span></p>
+                    </div>}
                 </td>
-                {/* <td>
-                    <label htmlFor="delete-confirm-modal" className="btn btn-xs btn-error" >Delete</label>
-                </td> */}
             </tr>
         </>
     );

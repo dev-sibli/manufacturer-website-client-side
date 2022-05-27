@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
@@ -24,8 +24,11 @@ const Purchase = () => {
             .then(data => setProduct(data));
     }, [productId, product])
 
+    const navigate = useNavigate();
+
     const handleSubmit = event => {
         event.preventDefault()
+
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const tool = toolRef.current.value;
@@ -39,26 +42,21 @@ const Purchase = () => {
             email: email,
             toolName: tool,
             quantity: quantity,
-            price: price,
+            price: price * quantity,
             address: address,
             phone: phone
         }
         fetch('http://localhost:5000/order', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(order)
         })
             .then(res => res.json())
             .then(data => {
-                const acknowledged = true;
-                if (acknowledged) {
-                    toast.success(`Purchase done`)
-                }
-                else {
-                    toast.error(`Purchase error`)
-                }
+                console.log(data);
             });
     }
 
