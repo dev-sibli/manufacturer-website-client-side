@@ -30,7 +30,6 @@ const SignUp = () => {
     }
 
     if (token) {
-        console.log('hello');
         navigate(from, { replace: true });
     }
 

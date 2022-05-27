@@ -1,10 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const AddReview = () => {
 
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const navigate = useNavigate()
 
     const onSubmit = data => {
         const review = {
@@ -22,8 +24,8 @@ const AddReview = () => {
             .then(res => res.json())
             .then(inserted => {
                 if (inserted.insertedId) {
-                    toast.success('Thank you for your Review')
-
+                    toast.success('Thank you for your review')
+                    reset()
                 }
                 else {
                     toast.error('Something went wrong');

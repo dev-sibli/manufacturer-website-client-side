@@ -11,7 +11,7 @@ const Orders = ({ order, index }) => {
                 <td>{price}</td>
                 <td>{quantity}</td>
                 <td>
-                    {!paid && <label htmlFor="delete-confirm-modal" className="btn btn-xs btn-success" >Cancel</label>}
+                    {!paid ? <label htmlFor="delete-confirm-modal" className="btn btn-xs btn-success" >Cancel</label> : <p>Paid</p>}
                 </td>
                 <td>{(price && !paid) && <Link to={`/dashboard/payment/${_id}`}><button className='btn btn-xs btn-success'>pay</button></Link>}
                     {(price && paid) && <div>

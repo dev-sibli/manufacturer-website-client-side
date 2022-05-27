@@ -81,6 +81,7 @@ const CheckoutForm = ({ order }) => {
                 .then(data => {
                     setProcessing(false)
                 })
+
         }
     }
     return (

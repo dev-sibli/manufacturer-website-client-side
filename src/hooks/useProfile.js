@@ -8,7 +8,7 @@ const useProfile = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate()
     const email = user?.email;
-    const [profiles, setProfiles] = useState({})
+    const [profiles, setProfiles] = useState([])
     useEffect(() => {
         if (email) {
             fetch(`http://localhost:5000/myProfile?email=${email}`, {
@@ -18,7 +18,7 @@ const useProfile = () => {
                 }
             })
                 .then(res => {
-                    console.log('res', res);
+
                     if (res.status === 401 || res.status === 403) {
                         signOut(auth);
                         localStorage.removeItem('accessToken');
@@ -27,7 +27,6 @@ const useProfile = () => {
                     return res.json()
                 })
                 .then(data => {
-                    console.log(data);
                     setProfiles(data);
                 });
         }

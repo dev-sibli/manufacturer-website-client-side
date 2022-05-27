@@ -30,6 +30,9 @@ const MyOrder = () => {
                     setOrders(data);
                 });
         }
+        else {
+            navigate('/');
+        }
     }, [user, email, navigate])
     return (
         <div>

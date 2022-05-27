@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
@@ -36,7 +35,6 @@ const Purchase = () => {
         const address = addressRef.current.value;
         const phone = phoneRef.current.value;
         const price = priceRef.current.value;
-        console.log(name, email, tool, quantity, address, phone);
         const order = {
             name: name,
             email: email,
@@ -56,7 +54,8 @@ const Purchase = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                toast.success('Your order has been placed. Please pay')
+                navigate('/dashboard/myOrder');
             });
     }
 
@@ -67,6 +66,7 @@ const Purchase = () => {
                     <img className='w-6/12 ' src={product.image} alt="" />
                     <h2 className="card-title">{product.name}</h2>
                     <p>{product.description}</p>
+                    <p><strong>Price: ${product.price}</strong></p>
                     <p>Stock: {product.stockQuantity} Unit</p>
                     <p>Minimum Quantity: {product.minimumQuantity} Unit</p>
                 </div>
