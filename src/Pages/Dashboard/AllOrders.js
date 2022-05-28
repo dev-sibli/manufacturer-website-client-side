@@ -12,7 +12,7 @@ const AllOrders = ({ manageOrder, index, setDeletingOrder, refetch }) => {
                 <td>{quantity}</td>
                 <td>{phone}</td>
                 <td>
-                    <label onClick={() => setDeletingOrder(manageOrder)} for="delete-confirm-modal" class="btn btn-xs btn-error">Delete</label>
+                    <label onClick={() => setDeletingOrder(manageOrder)} for="delete-confirm-modal" className="btn btn-xs btn-error">Delete</label>
                 </td>
             </tr>
         </>
