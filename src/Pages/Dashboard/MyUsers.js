@@ -11,7 +11,7 @@ const MyUsers = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/user`, {
+            fetch(`https://fierce-wildwood-20183.herokuapp.com/user`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`

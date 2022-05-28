@@ -35,7 +35,7 @@ const MyProfile = () => {
                         phone: parseInt(data.phone),
                         education: data.education
                     }
-                    fetch(`http://localhost:5000/user?email=${user.email}`, {
+                    fetch(`https://fierce-wildwood-20183.herokuapp.com/user?email=${user.email}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',

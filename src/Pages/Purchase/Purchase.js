@@ -17,7 +17,7 @@ const Purchase = () => {
     const { productId } = useParams();
     const [product, setProduct] = useState({})
     useEffect(() => {
-        const url = `http://localhost:5000/tool/${productId}`;
+        const url = `https://fierce-wildwood-20183.herokuapp.com/tool/${productId}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data));
@@ -44,7 +44,7 @@ const Purchase = () => {
             address: address,
             phone: phone
         }
-        fetch('http://localhost:5000/order', {
+        fetch('https://fierce-wildwood-20183.herokuapp.com/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

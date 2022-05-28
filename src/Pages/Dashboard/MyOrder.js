@@ -11,7 +11,7 @@ const MyOrder = () => {
     const navigate = useNavigate()
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/myOrder?email=${user.email}`, {
+            fetch(`https://fierce-wildwood-20183.herokuapp.com/myOrder?email=${user.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`

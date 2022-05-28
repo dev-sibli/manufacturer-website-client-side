@@ -8,7 +8,7 @@ const useProfile = () => {
     const [profiles, setProfiles] = useState([])
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/myProfile?email=${email}`)
+            fetch(`https://fierce-wildwood-20183.herokuapp.com/myProfile?email=${email}`)
                 .then(res => res.json()
                 )
                 .then(data => {

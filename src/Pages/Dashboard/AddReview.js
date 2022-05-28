@@ -11,7 +11,7 @@ const AddReview = () => {
             about: data.about
         }
 
-        fetch('http://localhost:5000/review', {
+        fetch('https://fierce-wildwood-20183.herokuapp.com/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

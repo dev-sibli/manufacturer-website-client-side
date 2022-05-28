@@ -4,7 +4,7 @@ import Tool from './Tool';
 const Tools = () => {
     const [tools, setTools] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/tool')
+        fetch('https://fierce-wildwood-20183.herokuapp.com/tool')
             .then(res => res.json())
             .then(data => setTools(data));
     }, [])

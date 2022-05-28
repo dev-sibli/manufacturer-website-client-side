@@ -27,7 +27,7 @@ const AddProduct = () => {
                         minimumQuantity: parseInt(data.minimumQuantity),
                         stockQuantity: parseInt(data.stockQuantity)
                     }
-                    fetch('http://localhost:5000/tool', {
+                    fetch('https://fierce-wildwood-20183.herokuapp.com/tool', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

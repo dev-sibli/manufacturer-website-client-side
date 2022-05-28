@@ -6,7 +6,7 @@ import DeleteConfirmModal from './DeleteConfirmModal';
 
 const ManageAllOrders = () => {
     const [deletingOrder, setDeletingOrder] = useState(null);
-    const { data: ManageOrders, isLoading, refetch } = useQuery('ManageOrders', () => fetch('http://localhost:5000/order', {
+    const { data: ManageOrders, isLoading, refetch } = useQuery('ManageOrders', () => fetch('https://fierce-wildwood-20183.herokuapp.com/order', {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
