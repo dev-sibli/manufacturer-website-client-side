@@ -21,7 +21,7 @@ const MyProfile = () => {
         formData.append('image', image);
         const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
         fetch(url, {
-            method: 'POST',
+            method: 'PUT',
             body: formData
         })
             .then(res => res.json())
@@ -35,8 +35,8 @@ const MyProfile = () => {
                         phone: parseInt(data.phone),
                         education: data.education
                     }
-                    fetch(`http://localhost:5000/myProfile?email=${email}`, {
-                        method: 'POST',
+                    fetch(`http://localhost:5000/user?email=${user.email}`, {
+                        method: 'PUT',
                         headers: {
                             'content-type': 'application/json',
                             authorization: `Bearer ${localStorage.getItem('accessToken')}`

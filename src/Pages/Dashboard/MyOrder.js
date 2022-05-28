@@ -9,10 +9,9 @@ const MyOrder = () => {
     const [orders, setOrders] = useState([]);
     const [user] = useAuthState(auth);
     const navigate = useNavigate()
-    const email = user?.email;
     useEffect(() => {
-        if (email) {
-            fetch(`http://localhost:5000/myOrder?email=${email}`, {
+        if (user) {
+            fetch(`http://localhost:5000/myOrder?email=${user.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -30,10 +29,7 @@ const MyOrder = () => {
                     setOrders(data);
                 });
         }
-        else {
-            navigate('/');
-        }
-    }, [user, email, navigate])
+    }, [user])
     return (
         <div>
             <h1>My order</h1>

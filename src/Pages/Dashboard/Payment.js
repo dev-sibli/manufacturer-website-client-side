@@ -28,10 +28,10 @@ const Payment = () => {
         <div>
             <div className="card mx-auto w-50 max-w-md bg-base-100 shadow-xl my-12">
                 <div className="card-body">
-                    <p className="text-success font-bold">Hello, {order.name}</p>
-                    <h2 className="card-title">Please Pay for {order.toolName}</h2>
-                    <p>Your Quantity: {order.quantity}</p>
-                    <p>Please pay: ${order.price}</p>
+                    <p className="text-success font-bold">Hello, {order?.name}</p>
+                    <h2 className="card-title">Please Pay for {order?.toolName}</h2>
+                    <p>Your Quantity: {order?.quantity}</p>
+                    <p>Please pay: ${order?.price}</p>
                 </div>
             </div>
             <div className="card mx-auto flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">

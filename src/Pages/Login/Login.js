@@ -29,9 +29,6 @@ const Login = () => {
         }
     }, [token, from, navigate])
 
-    if (user) {
-        navigate('/')
-    }
 
     if (loading || gLoading) {
         return <Loading></Loading>
